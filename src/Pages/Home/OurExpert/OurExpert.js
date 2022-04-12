@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 
 const OurExpert = ({ expert }) => {
   const { name, img } = expert;
-  console.log(expert);
+
   return (
     <div className="col-md-6 col-lg-4">
       <div className="d-flex justify-content-center">

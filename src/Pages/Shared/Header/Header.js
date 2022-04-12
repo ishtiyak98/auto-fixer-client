@@ -1,17 +1,33 @@
+import { signOut } from "firebase/auth";
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import auth from "../../../firebase.init";
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+
+  const handleSignOut = ()=> {
+    Swal.fire({
+      title: "Logged Out!",
+      text: "Successfully logged Out",
+      icon: "success",
+    });
+    signOut(auth);
+  }
+
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+    <>
+      <Navbar collapseOnSelect sticky="top" expand="lg" bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav.Link href="home#services">Services</Nav.Link>
+              <Nav.Link href="home#experts">Experts</Nav.Link>
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -27,13 +43,15 @@ const Header = () => {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">Signup</Nav.Link>
-              <Nav.Link href="#memes">Login</Nav.Link>
+              <Nav.Link as={Link} to="/about" >About</Nav.Link>
+              {
+                user ? <Nav.Link as={Button} onClick={handleSignOut}>Signout</Nav.Link> : <Nav.Link as={Link} to="/login">Login</Nav.Link>
+              }
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
+    </>
   );
 };
 
