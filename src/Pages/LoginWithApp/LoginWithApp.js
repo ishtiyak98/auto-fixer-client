@@ -39,13 +39,13 @@ const LoginWithApp = () => {
   }
 
   if (googleLoading || githubLoading) {
-    <PageSpinner></PageSpinner>;
+    return <PageSpinner></PageSpinner>;
   }
 
   if (googleError || githubError) {
     Swal.fire({
       title: "Error",
-      text: googleError.message,
+      text: googleError.message || githubError,
       icon: "error",
     });
   }
