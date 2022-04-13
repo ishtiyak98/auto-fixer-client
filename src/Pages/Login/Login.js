@@ -4,12 +4,14 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import auth from "../../firebase.init";
+import LoginWithApp from "../LoginWithApp/LoginWithApp";
 
 const Login = () => {
   const emailRef = useRef("");
   const passRef = useRef("");
-  
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
   let location = useLocation();
   let navigate = useNavigate();
@@ -59,9 +61,6 @@ const Login = () => {
             placeholder="Enter email"
             required
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -73,16 +72,23 @@ const Login = () => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
+        <Button
+          className="w-50 d-block mx-auto"
+          variant="primary"
+          type="submit"
+        >
+          Login
         </Button>
-        <p className="my-2">
-          New User?{" "}
-          <Link className="text-primary text-decoration-none" to={"/signup"}>
-            Signup
-          </Link>
-        </p>
       </Form>
+      <p className="my-3 text-center">
+        New User?{" "}
+        <Link className="text-primary text-decoration-none" to={"/signup"}>
+          Signup
+        </Link>
+      </p>
+      <div>
+        <LoginWithApp></LoginWithApp>
+      </div>
     </div>
   );
 };

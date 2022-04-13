@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Swal from "sweetalert2";
+import LoginWithApp from "../LoginWithApp/LoginWithApp";
 
 const Signup = () => {
   const emailRef = useRef("");
@@ -34,6 +35,16 @@ const Signup = () => {
     <div className="w-50 mx-auto px-3 py-4 mt-5">
       <h2 className="text-center text-primary">Signup</h2>
       <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Profile Name</Form.Label>
+          <Form.Control
+            ref={emailRef}
+            type="text"
+            placeholder="Enter name"
+            required
+          />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -42,9 +53,6 @@ const Signup = () => {
             placeholder="Enter email"
             required
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -57,26 +65,20 @@ const Signup = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            ref={passRef}
-            type="password"
-            placeholder="Password"
-            required
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
+        <Button className="w-50 d-block mx-auto" variant="primary" type="submit">
           Submit
         </Button>
-        <p className="my-2">
-          Already have an account?{" "}
-          <Link className="text-primary text-decoration-none" to={"/login"}>
-            Login
-          </Link>
-        </p>
       </Form>
+
+      <p className="my-3 text-center">
+        Already have an account?{" "}
+        <Link className="text-primary text-decoration-none" to={"/login"}>
+          Login
+        </Link>
+      </p>
+      <div>
+        <LoginWithApp></LoginWithApp>
+      </div>
     </div>
   );
 };
