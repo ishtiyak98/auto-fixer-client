@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import auth from "../../../firebase.init";
+import { RiPoliceCarFill } from "react-icons/ri";
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -22,7 +23,7 @@ const Header = () => {
     <>
       <Navbar collapseOnSelect sticky="top" expand="lg" bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand as={Link} to="/home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/home" className="d-flex align-items-center"><RiPoliceCarFill size={"1.5em"}></RiPoliceCarFill><span className="mx-2">Auto Fixer</span></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
