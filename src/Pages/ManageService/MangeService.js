@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import OurService from "../OurService/OurService";
+import OurService from "../Home/OurService/OurService";
+import ManageCard from "./ManageCard/ManageCard";
 
-const OurServices = () => {
+const MangeService = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -10,17 +11,15 @@ const OurServices = () => {
       .then((data) => setServices(data));
   }, []);
 
-
   return (
     <div className="container my-5 py-4" id="services">
-      <h1 className="text-center text-primary my-4">Our Services</h1>
       <div className="row gy-5 gx-4">
         {services.map((service) => (
-          <OurService key={service._id} service={service}></OurService>
+          <ManageCard key={service._id} service={service}></ManageCard>
         ))}
       </div>
     </div>
   );
 };
 
-export default OurServices;
+export default MangeService;
