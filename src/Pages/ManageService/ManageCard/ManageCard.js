@@ -1,8 +1,11 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const ManageCard = ({ service }) => {
+  const navigate = useNavigate();
   const { img, name, description, price, _id } = service;
+
   return (
     <div className="col-md-6 col-lg-4">
       <div className="d-flex justify-content-center">
@@ -13,7 +16,7 @@ const ManageCard = ({ service }) => {
             <Card.Text className="text-secondary">{description}</Card.Text>
             <div className="d-flex justify-content-between align-items-center">
               <div>
-                <button className="btn btn-primary me-2">Edit</button>
+                <button className="btn btn-primary me-2" onClick={()=>{navigate(`/updateService/${_id}`)}}>Edit</button>
                 <button className="btn btn-danger me-2">Delete</button>
               </div>
               <p className="mb-0 fw-bold fs-5 text-dark">${price}</p>

@@ -11,6 +11,7 @@ import ServiceDetails from "./Pages/ServiceDetails/ServiceDetails";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import CreateService from "./Pages/CreateService/CreateService";
 import MangeService from "./Pages/ManageService/MangeService";
+import UpdateService from "./Pages/ManageService/UpdateService/UpdateService";
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
           element={
             <RequireAuth>
               <MangeService></MangeService>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/updateService/:serviceId"
+          element={
+            <RequireAuth>
+              <UpdateService></UpdateService>
             </RequireAuth>
           }
         ></Route>
